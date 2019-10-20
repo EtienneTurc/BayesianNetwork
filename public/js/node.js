@@ -8,13 +8,14 @@ class Node {
 	}
 
 	drawNode(ctx) {
+		ctx.lineWidth = LINE_WIDTH;
 		// Draw the node
 		ctx.beginPath();
 		ctx.arc(this.x, this.y, NODE_RADIUS, 0, Math.PI * 2, 0)
 		ctx.closePath();
 
 		// Outer line of the node
-		ctx.fillStyle = NODE_OUTER_COLOR;
+		ctx.strokeStyle = NODE_OUTER_COLOR;
 		ctx.stroke();
 
 		// Background of the node

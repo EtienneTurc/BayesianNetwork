@@ -7,6 +7,15 @@ function isOnNodes(x, y, nodes) {
 	return null
 }
 
+function isOnEdges(x, y, edges) {
+	for (let e of edges) {
+		if (e.intersect(x, y)) {
+			return e
+		}
+	}
+	return null
+}
+
 function deleteSelectedNodes(nodes, edges) {
 	let to_delete = []
 	let new_nodes = []
@@ -18,8 +27,12 @@ function deleteSelectedNodes(nodes, edges) {
 		}
 	}
 	let new_edges = []
-	for (let e in edges) {
-		if (!to_delete.includes(e.node1) && to_delete.includes(e.node2)) {
+	for (let e of edges) {
+		if (e.selected) {
+			delete e
+			continue
+		}
+		if (!to_delete.includes(e.node1) && !to_delete.includes(e.node2)) {
 			new_edges.push(e)
 		}
 	}

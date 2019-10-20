@@ -1,12 +1,16 @@
 canvas.addEventListener('dblclick', function (e) {
 	let node_selected = isOnNodes(e.clientX, e.clientY, nodes)
-	if (!node_selected) {
+	let edge_selected = isOnEdges(e.clientX, e.clientY, edges)
+
+	if (node_selected) {
+		node_selected.selected = !node_selected.selected
+	} else if (edge_selected) {
+		edge_selected.selected = !edge_selected.selected
+	} else {
 		let n = new Node(e.clientX, e.clientY)
 		nodes.push(n)
-		draw()
-	} else {
-		node_selected.selected = true
 	}
+	draw()
 });
 
 canvas.addEventListener('click', function (e) {
