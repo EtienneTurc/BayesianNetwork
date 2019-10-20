@@ -1,0 +1,4 @@
+const NODE_RADIUS = 50
+const NODE_BACKGROUND_COLOR = 'rgb(150, 150, 255)'
+const NODE_OUTER_COLOR = 'rgb(255, 255, 255)'
+const EDGE_COLOR = 'rgb(255, 255, 255)'
