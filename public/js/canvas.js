@@ -6,7 +6,6 @@ var edges = []
 
 var link = []
 
-
 // resize the canvas to fill browser window dynamically
 window.addEventListener('resize', resizeCanvas, false);
 

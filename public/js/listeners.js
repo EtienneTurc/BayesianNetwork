@@ -1,7 +1,12 @@
 canvas.addEventListener('dblclick', function (e) {
-	let n = new Node(e.clientX, e.clientY)
-	nodes.push(n)
-	draw()
+	let node_selected = isOnNodes(e.clientX, e.clientY, nodes)
+	if (!node_selected) {
+		let n = new Node(e.clientX, e.clientY)
+		nodes.push(n)
+		draw()
+	} else {
+		node_selected.selected = true
+	}
 });
 
 canvas.addEventListener('click', function (e) {
@@ -26,6 +31,14 @@ canvas.addEventListener('click', function (e) {
 	}
 });
 
+window.addEventListener('keydown', function (e) {
+	if (e.keyCode == BACKSPACE || e.keyCode == DELETE) {
+		let res = deleteSelectedNodes(nodes, edges)
+		nodes = res[0]
+		edges = res[1]
+		draw()
+	}
+});
 
 
 canvas.addEventListener('mousemove', function (e) {
@@ -43,7 +56,6 @@ canvas.addEventListener('mousemove', function (e) {
 
 
 canvas.addEventListener('mousedown', function (e) {
-	console.log("hi")
 	if (e.shiftKey) {
 		return
 	}

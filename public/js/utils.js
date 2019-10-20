@@ -6,3 +6,25 @@ function isOnNodes(x, y, nodes) {
 	}
 	return null
 }
+
+function deleteSelectedNodes(nodes, edges) {
+	let to_delete = []
+	let new_nodes = []
+	for (let n of nodes) {
+		if (n.selected) {
+			to_delete.push(n)
+		} else {
+			new_nodes.push(n)
+		}
+	}
+	let new_edges = []
+	for (let e in edges) {
+		if (!to_delete.includes(e.node1) && to_delete.includes(e.node2)) {
+			new_edges.push(e)
+		}
+	}
+	for (let n of to_delete) {
+		delete n
+	}
+	return [new_nodes, new_edges]
+}
