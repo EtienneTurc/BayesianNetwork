@@ -1,24 +1,38 @@
 canvas.addEventListener('dblclick', function (e) {
-	let node_selected = isOnNodes(e.clientX, e.clientY, nodes)
-	let edge_selected = isOnEdges(e.clientX, e.clientY, edges)
+	let mouse_pos = getMousePosition(e)
+	let node_selected = isOnNodes(mouse_pos.x, mouse_pos.y, nodes)
+	let edge_selected = isOnEdges(mouse_pos.x, mouse_pos.y, edges)
 
-	if (node_selected) {
-		node_selected.selected = !node_selected.selected
-	} else if (edge_selected) {
-		edge_selected.selected = !edge_selected.selected
-	} else {
-		let n = new Node(e.clientX, e.clientY)
+	for (let n of nodes) {
+		if (node_selected == n) {
+			n.selected = !n.selected
+		} else {
+			n.selected = false
+		}
+	}
+
+	for (let e of edges) {
+		if (edge_selected == e && !node_selected) {
+			e.selected = !e.selected
+		} else {
+			e.selected = false
+		}
+	}
+
+	if (!node_selected && !edge_selected) {
+		let n = new Node(mouse_pos.x, mouse_pos.y)
 		nodes.push(n)
 	}
 	draw()
 });
 
 canvas.addEventListener('click', function (e) {
+	let mouse_pos = getMousePosition(e)
 	if (!e.shiftKey) {
 		link = []
 	}
 
-	let node_selected = isOnNodes(e.clientX, e.clientY, nodes)
+	let node_selected = isOnNodes(mouse_pos.x, mouse_pos.y, nodes)
 	if (!node_selected) {
 		return
 	}
@@ -46,13 +60,15 @@ window.addEventListener('keydown', function (e) {
 
 
 canvas.addEventListener('mousemove', function (e) {
+	let mouse_pos = getMousePosition(e)
+
 	if (e.shiftKey) {
 		return
 	}
 
 	for (let n of nodes) {
 		if (n.dragged) {
-			n.setPos(e.clientX, e.clientY)
+			n.setPos(mouse_pos.x, mouse_pos.y)
 		}
 	}
 	draw()
@@ -60,11 +76,13 @@ canvas.addEventListener('mousemove', function (e) {
 
 
 canvas.addEventListener('mousedown', function (e) {
+	let mouse_pos = getMousePosition(e)
+
 	if (e.shiftKey) {
 		return
 	}
 
-	let node_selected = isOnNodes(e.clientX, e.clientY, nodes)
+	let node_selected = isOnNodes(mouse_pos.x, mouse_pos.y, nodes)
 	if (!node_selected) {
 		return
 	}
@@ -79,5 +97,4 @@ canvas.addEventListener('mouseup', function (e) {
 	for (let n of nodes) {
 		n.dragged = false
 	}
-	draw()
 });

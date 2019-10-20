@@ -16,6 +16,15 @@ function isOnEdges(x, y, edges) {
 	return null
 }
 
+function getMousePosition(e) {
+	var rect = canvas.getBoundingClientRect();
+
+	return {
+		x: e.clientX,
+		y: e.clientY
+	}
+}
+
 function deleteSelectedNodes(nodes, edges) {
 	let to_delete = []
 	let new_nodes = []

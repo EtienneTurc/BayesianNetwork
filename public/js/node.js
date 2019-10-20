@@ -4,7 +4,7 @@ class Node {
 		this.y = y
 		this.name = name
 		this.dragged = false
-		this.selected = false
+		this.selected = true
 	}
 
 	drawNode(ctx) {

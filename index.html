@@ -7,10 +7,16 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Bayesian Network Simulation</title>
 	<link href="public/css/main.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/css/uikit.min.css" />
+
 </head>
 
-<body>
-	<canvas id="canvas"></canvas>
+<body id="body">
+	<div uk-grid>
+		<canvas id="canvas" height="700px"></canvas>
+		<div class="uk-width-expand@m uk-margin-large uk-margin-large-right uk-card uk-card-default uk-card-body">Item
+		</div>
+	</div>
 </body>
 
 <script src="public/js/config.js"></script>
@@ -19,5 +25,7 @@
 <script src="public/js/utils.js"></script>
 <script src="public/js/canvas.js"></script>
 <script src="public/js/listeners.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit-icons.min.js"></script>
 
 </html>
