@@ -1,17 +1,18 @@
 var canvas = document.getElementById('canvas');
+var rest = document.getElementById('rest');
 const ctx = canvas.getContext('2d');
 
 var nodes = []
 var edges = []
 
-canvas.height = document.body.clientHeight;
+canvas.height = window.innerHeight;
 var link = []
 
 // resize the canvas to fill browser window dynamically
 window.addEventListener('resize', resizeCanvas, false);
 
 function resizeCanvas() {
-	canvas.width = window.innerWidth * 0.75;
+	canvas.width = window.innerWidth * 0.6; // SOMETHING TO DO BETTER THERE
 	draw();
 }
 resizeCanvas();

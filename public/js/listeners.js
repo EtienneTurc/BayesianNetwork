@@ -3,14 +3,22 @@ canvas.addEventListener('dblclick', function (e) {
 	let node_selected = isOnNodes(mouse_pos.x, mouse_pos.y, nodes)
 	let edge_selected = isOnEdges(mouse_pos.x, mouse_pos.y, edges)
 
-	for (let n of nodes) {
+	// Selects a node
+	for (let i in nodes) {
+		let n = nodes[i]
 		if (node_selected == n) {
 			n.selected = !n.selected
+			triggerEvent('node-selected', {
+				selected: n.selected,
+				node: node_selected,
+				index: i
+			})
 		} else {
 			n.selected = false
 		}
 	}
 
+	// Select an edges
 	for (let e of edges) {
 		if (edge_selected == e && !node_selected) {
 			e.selected = !e.selected
@@ -19,10 +27,18 @@ canvas.addEventListener('dblclick', function (e) {
 		}
 	}
 
+	// Add node and selects it
 	if (!node_selected && !edge_selected) {
 		let n = new Node(mouse_pos.x, mouse_pos.y)
 		nodes.push(n)
+
+		triggerEvent('node-selected', {
+			selected: true,
+			node: n,
+			index: nodes.length - 1
+		})
 	}
+
 	draw()
 });
 
@@ -42,6 +58,7 @@ canvas.addEventListener('click', function (e) {
 
 		if (link.length == 2) {
 			var edge = new Edge(link[0], link[1])
+			link[1].addParent(link[0])
 			link = []
 			edges.push(edge)
 			draw();
@@ -50,14 +67,13 @@ canvas.addEventListener('click', function (e) {
 });
 
 window.addEventListener('keydown', function (e) {
-	if (e.keyCode == BACKSPACE || e.keyCode == DELETE) {
+	if (e.keyCode == DELETE) {
 		let res = deleteSelectedNodes(nodes, edges)
 		nodes = res[0]
 		edges = res[1]
 		draw()
 	}
 });
-
 
 canvas.addEventListener('mousemove', function (e) {
 	let mouse_pos = getMousePosition(e)
@@ -71,11 +87,13 @@ canvas.addEventListener('mousemove', function (e) {
 			n.setPos(mouse_pos.x, mouse_pos.y)
 		}
 	}
+
 	draw()
 });
 
 
 canvas.addEventListener('mousedown', function (e) {
+	e.preventDefault()
 	let mouse_pos = getMousePosition(e)
 
 	if (e.shiftKey) {

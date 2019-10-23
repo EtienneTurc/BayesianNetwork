@@ -5,6 +5,10 @@ class Node {
 		this.name = name
 		this.dragged = false
 		this.selected = true
+		this.proba = [[0, 1]]
+		this.parents = []
+		this.value = -1
+		this.proba_computed = 0
 	}
 
 	drawNode(ctx) {
@@ -36,6 +40,41 @@ class Node {
 		this.x = x
 		this.y = y
 	}
+
+	addParent(parent_node) {
+		this.parents.push(parent_node)
+		this.proba = this.proba.concat(this.proba)
+	}
+
+	deleteParents(to_delete) {
+		let parents_to_delete = []
+		let parents_to_keep = []
+		for (let index in this.parents) {
+			if (to_delete.includes(this.parents[index])) {
+				parents_to_delete.push(index)
+			} else {
+				parents_to_keep.push(this.parents[index])
+			}
+		}
+		this.parents = parents_to_keep
+
+		let index_to_keep = parents_to_delete.map(val => Math.pow(2, val))
+		let new_proba = []
+		for (let index in this.proba) {
+			let go_next = false
+			for (let val of index_to_keep) {
+				if (!(parseInt(index / val) % 2)) {
+					go_next = true
+				}
+				break
+			}
+			if (!go_next) {
+				new_proba.push(this.proba[index])
+			}
+		}
+		this.proba = new_proba
+	}
+
 
 	intersect(x, y) {
 		return Math.sqrt((this.x - x) * (this.x - x) + (this.y - y) * (this.y - y)) <= NODE_RADIUS

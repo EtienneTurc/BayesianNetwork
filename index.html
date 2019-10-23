@@ -13,8 +13,40 @@
 
 <body id="body">
 	<div uk-grid>
-		<canvas id="canvas" height="700px"></canvas>
-		<div class="uk-width-expand@m uk-margin-large uk-margin-large-right uk-card uk-card-default uk-card-body">Item
+		<canvas id="canvas"></canvas>
+		<div
+			class="uk-width-expand@m uk-margin-large uk-margin-medium-right uk-margin-medium-left uk-card uk-card-default uk-card-body">
+			<form id="form" onsubmit="return false">
+				<div class="uk-margin">
+					<input class="uk-input uk-disabled" type="text" placeholder="Name">
+				</div>
+				<table class="uk-table uk-table-small uk-table-divider">
+					<thead>
+						<tr>
+							<th>Parent name</th>
+							<th>P(Node = 0 | Parents)</th>
+							<th>P(Node = 1 | Parents)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>0</td>
+							<td><input class="uk-input" type="text" placeholder="Name">
+							</td>
+							<td><input class="uk-input" type="text" placeholder="Name">
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td><input class="uk-input" type="text" placeholder="Name">
+							</td>
+							<td><input class="uk-input" type="text" placeholder="Name">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<button class="uk-button uk-button-default">Save</button>
+			</form>
 		</div>
 	</div>
 </body>
@@ -24,6 +56,8 @@
 <script src="public/js/edge.js"></script>
 <script src="public/js/utils.js"></script>
 <script src="public/js/canvas.js"></script>
+<script src="public/js/form.js"></script>
+<script src="public/js/proba.js"></script>
 <script src="public/js/listeners.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit-icons.min.js"></script>
