@@ -1,27 +1,34 @@
 class Edge {
 	constructor(node1, node2) {
-		this.node1 = node1
-		this.node2 = node2
+		this.nodes = [node1, node2]
 		this.selected = false
+
+		this.drawEdge()
+
+		layer.add(this.konva_edge)
+		this.konva_edge.moveToBottom()
 	}
 
-	drawEdge(ctx) {
-		ctx.lineWidth = LINE_WIDTH;
-		// Draw line
-		ctx.beginPath();
-		ctx.moveTo(this.node1.x, this.node1.y);
-		ctx.lineTo(this.node2.x, this.node2.y);
-		ctx.closePath()
+	drawEdge() {
+		let points = [this.nodes[0].konva_node.getX(), this.nodes[0].konva_node.getY(), this.nodes[1].konva_node.getX(), this.nodes[1].konva_node.getY()]
+		points = outerNode(points)
+		this.konva_edge = new Konva.Arrow({
+			points: points,
+			pointerLength: POINTER_LENGTH,
+			pointerWidth: POINTER_WIDTH,
+			fill: EDGE_COLOR,
+			stroke: EDGE_COLOR,
+			strokeWidth: LINE_WIDTH
+		});
+	}
 
-		// Color the line
-		ctx.strokeStyle = EDGE_COLOR;
-		if (this.selected) {
-			ctx.strokeStyle = EDGE_COLOR_SELECTED;
-		}
-		ctx.stroke();
+	moveEdge() {
+		let points = [this.nodes[0].konva_node.getX(), this.nodes[0].konva_node.getY(), this.nodes[1].konva_node.getX(), this.nodes[1].konva_node.getY()]
+		points = outerNode(points)
+		this.konva_edge.setPoints(points)
 	}
 
 	intersect(x, y) {
-		return Math.sqrt((this.node1.x - x) * (this.node1.x - x) + (this.node1.y - y) * (this.node1.y - y)) + Math.sqrt((this.node2.x - x) * (this.node2.x - x) + (this.node2.y - y) * (this.node2.y - y)) <= Math.sqrt((this.node1.x - this.node2.x) * (this.node1.x - this.node2.x) + (this.node1.y - this.node2.y) * (this.node1.y - this.node2.y)) + EDGE_SELECTOR_EPSILON
+		return Math.sqrt((this.nodes[0].x - x) * (this.nodes[0].x - x) + (this.nodes[0].y - y) * (this.nodes[0].y - y)) + Math.sqrt((this.nodes[1].x - x) * (this.nodes[1].x - x) + (this.nodes[1].y - y) * (this.nodes[1].y - y)) <= Math.sqrt((this.nodes[0].x - this.nodes[1].x) * (this.nodes[0].x - this.nodes[1].x) + (this.nodes[0].y - this.nodes[1].y) * (this.nodes[0].y - this.nodes[1].y)) + EDGE_SELECTOR_EPSILON
 	}
 }

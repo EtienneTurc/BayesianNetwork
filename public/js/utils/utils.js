@@ -34,3 +34,15 @@ function getIndexInArray(nodes, parent_node) {
 	}
 	return -1
 }
+
+function outerNode(edge) {
+	let vec = [edge[2] - edge[0], edge[3] - edge[1]]
+	let norm = Math.sqrt(vec[0] * vec[0] + vec[1] * vec[1])
+	vec[0] /= norm
+	vec[1] /= norm
+
+	edge[2] -= vec[0] * NODE_RADIUS
+	edge[3] -= vec[1] * NODE_RADIUS
+
+	return edge
+}

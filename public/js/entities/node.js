@@ -57,7 +57,6 @@ class Node {
 	}
 
 	eraseNode() {
-		console.log("hi")
 		this.konva_node.destroy()
 		this.konva_node_name.destroy()
 	}

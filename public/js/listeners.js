@@ -1,4 +1,35 @@
-stage.on('dblclick', function (e) {
+window.addEventListener('keydown', function (e) {
+	if (e.keyCode == DELETE) {
+		let res = deleteSelectedNodes(nodes, edges)
+		nodes = res[0]
+		edges = res[1]
+	}
+
+	if (e.keyCode == SHIFT) {
+		shift_pressed = true
+	}
+});
+
+window.addEventListener('keyup', function (e) {
+	if (e.keyCode == SHIFT) {
+		shift_pressed = false
+		node_to_link = null
+		destroyArrow()
+		layer.draw()
+	}
+});
+
+container.addEventListener('node-selected', function (e) {
+	for (let node of nodes) {
+		if (node.id != e.detail.node.id) {
+			node.selected = false
+			node.setColor(NODE_BACKGROUND_COLOR)
+		}
+	}
+	layer.draw()
+})
+
+stage.on('dblclick', function () {
 	let mouse_pos = stage.getPointerPosition()
 	let node = new Node(mouse_pos.x, mouse_pos.y)
 	nodes.push(node)
@@ -11,63 +42,45 @@ stage.on('dblclick', function (e) {
 	layer.draw()
 })
 
-container.addEventListener('node-selected', function (e) {
-	for (let node of nodes) {
-		if (node.id != e.detail.node.id) {
-			node.selected = false
-			node.setColor(NODE_BACKGROUND_COLOR)
-		}
+stage.on('mousemove', function () {
+	if (shift_pressed && node_to_link && konva_arrow) {
+		moveArrow(node_to_link, stage.getPointerPosition())
+		layer.draw()
 	}
-	layer.draw()
 })
-
-container.addEventListener('click', function (e) {
-	let mouse_pos = stage.getPointerPosition()
-	if (!e.shiftKey) {
-		link = []
-	}
-
-	let node_selected = isOnNodes(mouse_pos.x, mouse_pos.y, nodes)
-	if (!node_selected) {
-		return
-	}
-
-	if (e.shiftKey) {
-		link.push(node_selected)
-		node_selected.linked = true
-
-		if (link.length == 2) {
-			var edge = new Edge(link[0], link[1])
-			link[1].addParent(link[0])
-			link[0].linked = false
-			link[1].linked = false
-			link = []
-			edges.push(edge)
-		}
-	}
-});
-
-window.addEventListener('keydown', function (e) {
-	if (e.keyCode == DELETE) {
-		let res = deleteSelectedNodes(nodes, edges)
-		nodes = res[0]
-		edges = res[1]
-	}
-});
 
 
 function nodeListeners(node, konva_node) {
 	// add cursor styling
 	konva_node.on('mouseover', function () {
+		mouseOnNode = node
 		document.body.style.cursor = 'pointer';
 	});
 	konva_node.on('mouseout', function () {
+		mouseOnNode = null
 		document.body.style.cursor = 'default';
 	});
 
 	konva_node.on('dragmove', function () {
 		node.moveText()
+		movesEdgesRelatedTo(node, edges)
 		layer.draw()
+	})
+
+	konva_node.on('click', function () {
+		if (shift_pressed) {
+			if (node_to_link) {
+				var edge = new Edge(node_to_link, node)
+				edges.push(edge)
+
+				node_to_link = null
+				destroyArrow()
+			} else {
+				node_to_link = node
+				drawArrow(node_to_link, stage.getPointerPosition())
+			}
+			layer.draw()
+		}
 	})
 
 	konva_node.on('dblclick', function (e) {
