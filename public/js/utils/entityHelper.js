@@ -1,13 +1,4 @@
 // NODES
-function isOnNodes(x, y, nodes) {
-	for (let n of nodes) {
-		if (n.intersect(x, y)) {
-			return n
-		}
-	}
-	return null
-}
-
 function getNodeById(id, nodes) {
 	for (let node of nodes) {
 		if (node.id == id) {
@@ -66,11 +57,11 @@ function deleteSelectedNodes(nodes, edges) {
 	}
 	let new_edges = []
 	for (let e of edges) {
-		if (e.selected) {
+		if (e.selected || to_delete.includes(e.nodes[0]) || to_delete.includes(e.nodes[1])) {
+			e.eraseEdge()
 			delete e
 			continue
-		}
-		if (!to_delete.includes(e.node1) && !to_delete.includes(e.node2)) {
+		} else {
 			new_edges.push(e)
 		}
 	}
@@ -88,14 +79,4 @@ function deleteSelectedNodes(nodes, edges) {
 	layer.draw()
 
 	return [new_nodes, new_edges]
-}
-
-// EDGES
-function isOnEdges(x, y, edges) {
-	for (let e of edges) {
-		if (e.intersect(x, y)) {
-			return e
-		}
-	}
-	return null
 }

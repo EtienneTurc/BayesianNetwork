@@ -28,6 +28,10 @@ class Edge {
 		this.konva_edge.setPoints(points)
 	}
 
+	eraseEdge() {
+		this.konva_edge.destroy()
+	}
+
 	intersect(x, y) {
 		return Math.sqrt((this.nodes[0].x - x) * (this.nodes[0].x - x) + (this.nodes[0].y - y) * (this.nodes[0].y - y)) + Math.sqrt((this.nodes[1].x - x) * (this.nodes[1].x - x) + (this.nodes[1].y - y) * (this.nodes[1].y - y)) <= Math.sqrt((this.nodes[0].x - this.nodes[1].x) * (this.nodes[0].x - this.nodes[1].x) + (this.nodes[0].y - this.nodes[1].y) * (this.nodes[0].y - this.nodes[1].y)) + EDGE_SELECTOR_EPSILON
 	}

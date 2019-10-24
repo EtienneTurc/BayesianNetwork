@@ -94,8 +94,4 @@ class Node {
 		}
 		this.proba = new_proba
 	}
-
-	intersect(x, y) {
-		return Math.sqrt((this.x - x) * (this.x - x) + (this.y - y) * (this.y - y)) <= NODE_RADIUS
-	}
 }

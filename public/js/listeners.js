@@ -63,13 +63,14 @@ function nodeListeners(node, konva_node) {
 
 	konva_node.on('dragmove', function () {
 		node.moveText()
-		movesEdgesRelatedTo(node, edges)
+		moveEdgesRelatedTo(node, edges)
 		layer.draw()
 	})
 
 	konva_node.on('click', function () {
 		if (shift_pressed) {
 			if (node_to_link) {
+				node.addParent(node_to_link)
 				var edge = new Edge(node_to_link, node)
 				edges.push(edge)
 
@@ -84,6 +85,7 @@ function nodeListeners(node, konva_node) {
 	})
 
 	konva_node.on('dblclick', function (e) {
+		console.log(node)
 		e.cancelBubble = true;
 		node.selected = !node.selected
 		node.setColor(node.selected ? NODE_BACKGROUND_COLOR_SELECTED : NODE_BACKGROUND_COLOR)

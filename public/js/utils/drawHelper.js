@@ -28,7 +28,7 @@ function moveArrow(node, mouse) {
 	}
 }
 
-function movesEdgesRelatedTo(node, edges) {
+function moveEdgesRelatedTo(node, edges) {
 	for (let e of edges) {
 		if (e.nodes[0].id == node.id || e.nodes[1].id == node.id) {
 			e.moveEdge()
