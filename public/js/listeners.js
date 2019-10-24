@@ -85,7 +85,6 @@ function nodeListeners(node, konva_node) {
 	})
 
 	konva_node.on('dblclick', function (e) {
-		console.log(node)
 		e.cancelBubble = true;
 		node.selected = !node.selected
 		node.setColor(node.selected ? NODE_BACKGROUND_COLOR_SELECTED : NODE_BACKGROUND_COLOR)

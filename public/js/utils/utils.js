@@ -28,7 +28,7 @@ function increment(values) {
 function getIndexInArray(nodes, parent_node) {
 	for (let i in nodes) {
 		let node = nodes[i]
-		if (node.konva_node.getX() == parent_node.konva_node.getX() && node.konva_node.getY() == parent_node.konva_node.getY() && node.name == parent_node.name) {
+		if (node.id == parent_node.id) {
 			return i
 		}
 	}
