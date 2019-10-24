@@ -3,10 +3,10 @@ html, body {
 	padding:0;
 	width:100%;
 	height:100%;
-	background-color: #4545e5
+	background-color: #3498db
 } /* just to be sure these are full screen*/
 
-canvas { display:block; background-color: #eeeeee} /* To remove the scrollbars */
+#container { display:block; background-color: #ecf0f1} /* To remove the scrollbars */
 
 .absolute-pos {
 	position: absolute;

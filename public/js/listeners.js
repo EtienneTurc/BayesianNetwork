@@ -1,49 +1,28 @@
-canvas.addEventListener('dblclick', function (e) {
-	let mouse_pos = getMousePosition(e)
-	let node_selected = isOnNodes(mouse_pos.x, mouse_pos.y, nodes)
-	let edge_selected = isOnEdges(mouse_pos.x, mouse_pos.y, edges)
+stage.on('dblclick', function (e) {
+	let mouse_pos = stage.getPointerPosition()
+	let node = new Node(mouse_pos.x, mouse_pos.y)
+	nodes.push(node)
 
-	// Selects a node
-	for (let i in nodes) {
-		let n = nodes[i]
-		if (node_selected == n) {
-			n.selected = !n.selected
-			triggerEvent('node-selected', {
-				selected: n.selected,
-				node: node_selected,
-				index: i
-			})
-		} else {
-			n.selected = false
+	triggerEvent('node-selected', {
+		selected: true,
+		node: node,
+	})
+
+	layer.draw()
+})
+
+container.addEventListener('node-selected', function (e) {
+	for (let node of nodes) {
+		if (node.id != e.detail.node.id) {
+			node.selected = false
+			node.setColor(NODE_BACKGROUND_COLOR)
 		}
 	}
+	layer.draw()
+})
 
-	// Select an edges
-	for (let e of edges) {
-		if (edge_selected == e && !node_selected) {
-			e.selected = !e.selected
-		} else {
-			e.selected = false
-		}
-	}
-
-	// Add node and selects it
-	if (!node_selected && !edge_selected) {
-		let n = new Node(mouse_pos.x, mouse_pos.y)
-		nodes.push(n)
-
-		triggerEvent('node-selected', {
-			selected: true,
-			node: n,
-			index: nodes.length - 1
-		})
-	}
-
-	draw()
-});
-
-canvas.addEventListener('click', function (e) {
-	let mouse_pos = getMousePosition(e)
+container.addEventListener('click', function (e) {
+	let mouse_pos = stage.getPointerPosition()
 	if (!e.shiftKey) {
 		link = []
 	}
@@ -55,13 +34,15 @@ canvas.addEventListener('click', function (e) {
 
 	if (e.shiftKey) {
 		link.push(node_selected)
+		node_selected.linked = true
 
 		if (link.length == 2) {
 			var edge = new Edge(link[0], link[1])
 			link[1].addParent(link[0])
+			link[0].linked = false
+			link[1].linked = false
 			link = []
 			edges.push(edge)
-			draw();
 		}
 	}
 });
@@ -71,48 +52,31 @@ window.addEventListener('keydown', function (e) {
 		let res = deleteSelectedNodes(nodes, edges)
 		nodes = res[0]
 		edges = res[1]
-		draw()
 	}
 });
 
-canvas.addEventListener('mousemove', function (e) {
-	let mouse_pos = getMousePosition(e)
 
-	if (e.shiftKey) {
-		return
-	}
+function nodeListeners(node, konva_node) {
+	// add cursor styling
+	konva_node.on('mouseover', function () {
+		document.body.style.cursor = 'pointer';
+	});
+	konva_node.on('mouseout', function () {
+		document.body.style.cursor = 'default';
+	});
 
-	for (let n of nodes) {
-		if (n.dragged) {
-			n.setPos(mouse_pos.x, mouse_pos.y)
-		}
-	}
+	konva_node.on('dragmove', function () {
+		node.moveText()
+		layer.draw()
+	})
 
-	draw()
-});
-
-
-canvas.addEventListener('mousedown', function (e) {
-	e.preventDefault()
-	let mouse_pos = getMousePosition(e)
-
-	if (e.shiftKey) {
-		return
-	}
-
-	let node_selected = isOnNodes(mouse_pos.x, mouse_pos.y, nodes)
-	if (!node_selected) {
-		return
-	}
-	node_selected.dragged = true
-});
-
-canvas.addEventListener('mouseup', function (e) {
-	if (e.shiftKey) {
-		return
-	}
-
-	for (let n of nodes) {
-		n.dragged = false
-	}
-});
+	konva_node.on('dblclick', function (e) {
+		e.cancelBubble = true;
+		node.selected = !node.selected
+		node.setColor(node.selected ? NODE_BACKGROUND_COLOR_SELECTED : NODE_BACKGROUND_COLOR)
+		triggerEvent('node-selected', {
+			selected: node.selected,
+			node: node,
+		})
+	})
+}

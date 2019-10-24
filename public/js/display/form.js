@@ -1,7 +1,7 @@
 var form = document.getElementById("form")
-var canvas = document.getElementById("canvas")
+var container = document.getElementById("container")
 
-canvas.addEventListener('node-selected', function (e) {
+container.addEventListener('node-selected', function (e) {
 	if (e.detail.selected) {
 		let node = e.detail.node
 		let html_to_inject = `
@@ -43,7 +43,7 @@ canvas.addEventListener('node-selected', function (e) {
 				<option ${node.value == 1 ? 'selected' : ''} value="1">1</option>
 			</select>
 		</div>
-		<button onclick="saveNode(${e.detail.index})" class="uk-button uk-button-default">Save</button>
+		<button onclick="saveNode(${node.id})" class="uk-button uk-button-default">Save</button>
 		<button onclick="computeProbaAndUpdate()" class="uk-button uk-button-default">Compute</button>`
 		form.innerHTML = html_to_inject
 	} else {
@@ -51,12 +51,13 @@ canvas.addEventListener('node-selected', function (e) {
 	}
 });
 
-function saveNode(index) {
-	let node = nodes[index]
+function saveNode(id) {
+	let node = getNodeById(id, nodes)
 	node.name = document.getElementById("node_name").value
 	for (let i in node.proba) {
 		node.proba[i] = [parseFloat(document.getElementById("p" + i.toString() + "0").value), parseFloat(document.getElementById("p" + i.toString() + "1").value)]
 	}
 	node.value = parseInt(document.getElementById("value-attribution").value)
-	draw()
+	node.konva_node_name.setText(node.name)
+	layer.draw()
 }
