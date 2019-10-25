@@ -3,8 +3,8 @@ function drawArrow(node, mouse) {
 		points: [node.konva_node.getX(), node.konva_node.getY(), mouse.x, mouse.y],
 		pointerLength: POINTER_LENGTH,
 		pointerWidth: POINTER_WIDTH,
-		fill: EDGE_COLOR,
-		stroke: EDGE_COLOR,
+		fill: EDGE_FILL_COLOR,
+		stroke: EDGE_STROKE_COLOR,
 		strokeWidth: LINE_WIDTH
 	});
 	konva_arrow.listening(false)

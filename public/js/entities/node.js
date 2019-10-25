@@ -52,7 +52,8 @@ class Node {
 		this.konva_node_name.setY(this.konva_node.getY() - NODE_RADIUS * 0.3)
 	}
 
-	setColor(color) {
+	setColor() {
+		let color = this.selected ? NODE_BACKGROUND_COLOR_SELECTED : NODE_BACKGROUND_COLOR
 		this.konva_node.fill(color)
 	}
 

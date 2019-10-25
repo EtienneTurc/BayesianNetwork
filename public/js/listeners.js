@@ -20,14 +20,31 @@ window.addEventListener('keyup', function (e) {
 });
 
 container.addEventListener('node-selected', function (e) {
+	onSelected(e)
+})
+
+
+container.addEventListener('edge-selected', function (e) {
+	onSelected(e)
+})
+
+function onSelected(e) {
 	for (let node of nodes) {
-		if (node.id != e.detail.node.id) {
+		if (!e.detail.node || node.id != e.detail.node.id) {
 			node.selected = false
-			node.setColor(NODE_BACKGROUND_COLOR)
+			node.setColor()
 		}
 	}
+
+	for (let edge of edges) {
+		if (!e.detail.edge || edge != e.detail.edge) {
+			edge.selected = false
+			edge.setColor()
+		}
+	}
+
 	layer.draw()
-})
+}
 
 stage.on('dblclick', function () {
 	let mouse_pos = stage.getPointerPosition()
@@ -49,6 +66,18 @@ stage.on('mousemove', function () {
 	}
 })
 
+function edgeListeners(edge, konva_edge) {
+	konva_edge.on('dblclick', function (e) {
+		e.cancelBubble = true;
+		edge.selected = !edge.selected
+		edge.setColor()
+
+		triggerEvent('edge-selected', {
+			selected: true,
+			edge: edge,
+		})
+	})
+}
 
 function nodeListeners(node, konva_node) {
 	// add cursor styling
@@ -87,7 +116,7 @@ function nodeListeners(node, konva_node) {
 	konva_node.on('dblclick', function (e) {
 		e.cancelBubble = true;
 		node.selected = !node.selected
-		node.setColor(node.selected ? NODE_BACKGROUND_COLOR_SELECTED : NODE_BACKGROUND_COLOR)
+		node.setColor()
 		triggerEvent('node-selected', {
 			selected: node.selected,
 			node: node,

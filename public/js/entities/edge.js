@@ -16,16 +16,26 @@ class Edge {
 			points: points,
 			pointerLength: POINTER_LENGTH,
 			pointerWidth: POINTER_WIDTH,
-			fill: EDGE_COLOR,
-			stroke: EDGE_COLOR,
-			strokeWidth: LINE_WIDTH
+			fill: EDGE_FILL_COLOR,
+			stroke: EDGE_STROKE_COLOR,
+			strokeWidth: LINE_WIDTH,
+			hitStrokeWidth: 25,
 		});
+
+		edgeListeners(this, this.konva_edge)
 	}
 
 	moveEdge() {
 		let points = [this.nodes[0].konva_node.getX(), this.nodes[0].konva_node.getY(), this.nodes[1].konva_node.getX(), this.nodes[1].konva_node.getY()]
 		points = outerNode(points)
 		this.konva_edge.setPoints(points)
+	}
+
+	setColor() {
+		let color_fill = this.selected ? EDGE_FILL_COLOR_SELECTED : EDGE_FILL_COLOR
+		let color_stroke = this.selected ? EDGE_STROKE_COLOR_SELECTED : EDGE_STROKE_COLOR
+		this.konva_edge.fill(color_fill)
+		this.konva_edge.stroke(color_stroke)
 	}
 
 	eraseEdge() {

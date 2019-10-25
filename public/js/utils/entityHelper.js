@@ -58,6 +58,7 @@ function deleteSelectedNodes(nodes, edges) {
 	let new_edges = []
 	for (let e of edges) {
 		if (e.selected || to_delete.includes(e.nodes[0]) || to_delete.includes(e.nodes[1])) {
+			e.nodes[1].deleteParents([e.nodes[0]])
 			e.eraseEdge()
 			delete e
 			continue
