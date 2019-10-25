@@ -12,18 +12,25 @@
 </head>
 
 <body id="body">
-	<div uk-grid>
-		<div id="container"></div>
+	<div id="banner">
+		<h2 class="title">Bayesian network</h2>
+	</div>
+	<div class="background-color" uk-grid>
+		<div class="background-color">
+			<div id="container"></div>
+		</div>
+
 		<div
-			class="uk-width-expand@m uk-margin-large uk-margin-medium-right uk-margin-medium-left uk-card uk-card-default uk-card-body">
+			class="uk-width-expand@m uk-margin-medium-right uk-margin-medium-left uk-card uk-card-default uk-card-body card-style">
 			<form id="form" onsubmit="return false">
-				<h3>Create your bayesian network in few clics !</h3>
+				<h3 class="uk-heading-line"><span>Get started</span></h3>
 				<p>
-					First, add nodes by double clicking.<br>
-					Then, join your nodes by pressing shift and clicking on the nodes.<br>
-					You made, a mistake, no problem. Select the edge or the node and delete it by pressing
-					<i>delete</i>.<br>
-					Now you can compute the probabilities.
+					Add nodes by double clicking.<br>
+					Draw edges by pressing shift and clicking on the nodes.<br>
+					Delete an edge or a node by pressing <i>delete</i>.<br>
+					Compute the probabilities by clicking the <i>Compute</i> button.<br>
+					Save your network by simply clicking on the <i>Save</i> button.<br>
+					Use a previous network by loading it.
 				</p>
 			</form>
 		</div>

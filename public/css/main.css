@@ -6,19 +6,34 @@ html, body {
 	background-color: #3498db
 } /* just to be sure these are full screen*/
 
-#container { display:block; background-color: #ecf0f1} /* To remove the scrollbars */
-
-.absolute-pos {
-	position: absolute;
-	top: 80px;
-	right: 0px;
-	width: 200px;
-	height: 100px;
+#container {
+	display:block;
+	background-color: white;
+	margin-left:15px;
+	border-radius: 5px;
 }
 
-div.no_selection {
-	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
-	-moz-user-select: none; /* mozilla browsers */
-	-khtml-user-select: none; /* webkit (konqueror) browsers */
-	-ms-user-select: none; /* IE10+ */
+#banner {
+	background-color: #3498db;
+	height: 15%;
+}
+
+#form {
+	text-align:justify;
+}
+
+.card-style {
+	border-radius: 5px;
+	height: 100%;
+	/* margin-top:10vh !important; */
+}
+
+.title {
+	color:white;
+	padding: 2%;
+	vertical-align: middle;
+}
+
+.background-color {
+	background-color: #3498db;
 }

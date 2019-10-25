@@ -6,7 +6,7 @@ container.addEventListener('node-selected', function (e) {
 		let node = e.detail.node
 		let html_to_inject = `
 		<div class="uk-margin">
-			<input id="node_name" class="uk-input" type="text" placeholder="Node name" value="${node.name}">
+			<h4 class="uk-heading-line"><span id="node_name" ondblclick="updateName()">${node.name}</span></h4>
 		</div>
 		<table class="uk-table uk-table-small uk-table-divider">
 			<thead>
@@ -53,11 +53,25 @@ container.addEventListener('node-selected', function (e) {
 
 function saveNode(id) {
 	let node = getNodeById(id, nodes)
-	node.name = document.getElementById("node_name").value
+	node.name = document.getElementById("node_name").innerHTML
+	if (document.getElementById("node_name_input")) {
+		node.name = document.getElementById("node_name_input").value
+	}
 	for (let i in node.proba) {
 		node.proba[i] = [parseFloat(document.getElementById("p" + i.toString() + "0").value), parseFloat(document.getElementById("p" + i.toString() + "1").value)]
 	}
 	node.value = parseInt(document.getElementById("value-attribution").value)
 	node.konva_node_name.setText(node.name)
 	layer.draw()
+}
+
+function updateName() {
+	var span_node_name = document.getElementById("node_name")
+	if (document.getElementById("node_name_input")) {
+		span_node_name.innerHTML = document.getElementById("node_name_input").value
+	} else {
+		span_node_name.innerHTML = `
+		<input id="node_name_input" class="uk-input" type="text" placeholder="Node name" value="${span_node_name.innerHTML}">
+		`
+	}
 }

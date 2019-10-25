@@ -16,6 +16,8 @@ function decipherJson(json_file = net) {
 			edges.push(edge)
 		}
 		nodes[i].proba = nodes_json[i].proba
+		nodes[i].selected = false
+		nodes[i].setColor()
 	}
 
 	return [nodes, edges]
