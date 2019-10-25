@@ -9,3 +9,6 @@ var stage = new Konva.Stage({
 
 var layer = new Konva.Layer();
 stage.add(layer);
+
+[nodes, edges] = decipherJson()
+layer.draw()

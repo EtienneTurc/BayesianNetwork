@@ -1,11 +1,15 @@
 class Node {
-	constructor(x, y, name = DEFAULT_NODE_NAME) {
-		id++
-		this.id = id
+	constructor(x, y, name = DEFAULT_NODE_NAME, node_id = id, value = -1, parents = [], proba = [[0, 1]]) {
+		if (node_id > id) {
+			id = node_id + 1
+		} else {
+			id++
+		}
+		this.id = node_id
 		this.name = name
-		this.parents = []
-		this.proba = [[0, 1]]
-		this.value = -1
+		this.parents = parents
+		this.proba = proba
+		this.value = value
 		this.proba_computed = 0
 
 		this.selected = true
@@ -95,4 +99,50 @@ class Node {
 		}
 		this.proba = new_proba
 	}
+}
+
+
+function nodeListeners(node, konva_node) {
+	// add cursor styling
+	konva_node.on('mouseover', function () {
+		mouseOnNode = node
+		document.body.style.cursor = 'pointer';
+	});
+	konva_node.on('mouseout', function () {
+		mouseOnNode = null
+		document.body.style.cursor = 'default';
+	});
+
+	konva_node.on('dragmove', function () {
+		node.moveText()
+		moveEdgesRelatedTo(node, edges)
+		layer.draw()
+	})
+
+	konva_node.on('click', function () {
+		if (shift_pressed) {
+			if (node_to_link) {
+				node.addParent(node_to_link)
+				var edge = new Edge(node_to_link, node)
+				edges.push(edge)
+
+				node_to_link = null
+				destroyArrow()
+			} else {
+				node_to_link = node
+				drawArrow(node_to_link, stage.getPointerPosition())
+			}
+			layer.draw()
+		}
+	})
+
+	konva_node.on('dblclick', function (e) {
+		e.cancelBubble = true;
+		node.selected = !node.selected
+		node.setColor()
+		triggerEvent('node-selected', {
+			selected: node.selected,
+			node: node,
+		})
+	})
 }

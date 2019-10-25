@@ -46,3 +46,16 @@ class Edge {
 		return Math.sqrt((this.nodes[0].x - x) * (this.nodes[0].x - x) + (this.nodes[0].y - y) * (this.nodes[0].y - y)) + Math.sqrt((this.nodes[1].x - x) * (this.nodes[1].x - x) + (this.nodes[1].y - y) * (this.nodes[1].y - y)) <= Math.sqrt((this.nodes[0].x - this.nodes[1].x) * (this.nodes[0].x - this.nodes[1].x) + (this.nodes[0].y - this.nodes[1].y) * (this.nodes[0].y - this.nodes[1].y)) + EDGE_SELECTOR_EPSILON
 	}
 }
+
+function edgeListeners(edge, konva_edge) {
+	konva_edge.on('dblclick', function (e) {
+		e.cancelBubble = true;
+		edge.selected = !edge.selected
+		edge.setColor()
+
+		triggerEvent('edge-selected', {
+			selected: true,
+			edge: edge,
+		})
+	})
+}
