@@ -8,3 +8,6 @@ var shift_pressed = false
 var konva_arrow = null
 
 var mouseOnNode = null
+
+var stage = null
+var layer = null

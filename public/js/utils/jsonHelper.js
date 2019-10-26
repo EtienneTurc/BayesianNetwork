@@ -1,3 +1,10 @@
+function handleFileLoad(event) {
+	console.log("hi")
+	var json_content = event.target.result;
+	newStage(JSON.parse(json_content))
+	document.getElementById("close-modal").click()
+}
+
 function decipherJson(json_file = net) {
 	let nodes_json = json_file.nodes
 	let nodes = []
@@ -27,6 +34,16 @@ function saveToJson() {
 	console.log("hi")
 }
 
-function loadJsonFile() {
-	console.log("hi")
-}
+
+UIkit.upload('.js-upload', {
+	url: '',
+	multiple: false,
+	mime: "*/json",
+	allow: "*.json",
+
+	beforeAll: function () {
+		const reader = new FileReader()
+		reader.onload = handleFileLoad;
+		reader.readAsText(arguments[1][0])
+	},
+});
