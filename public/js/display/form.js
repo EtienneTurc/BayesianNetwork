@@ -27,9 +27,9 @@ container.addEventListener('node-selected', function (e) {
 			for (let index in node.parents) {
 				html_to_inject += `<td>${parseInt(i / Math.pow(2, index)) % 2}</td>`
 			}
-			html_to_inject += `<td><input id="p${i}0" class="uk-input" type="text" placeholder="Probability" value="${node.proba[i][0]}">
+			html_to_inject += `<td><input id="p${i}0" step="0.01" onchange="checkProba(${i}, 0)" class="uk-input" style="text-align:center" type="number" placeholder="Probability" value="${node.proba[i][0]}">
 				</td>
-				<td><input id="p${i}1" class="uk-input" type="text" placeholder="Probability" value="${node.proba[i][1]}">
+				<td><input id="p${i}1" class="uk-input" step="0.01" onchange="checkProba(${i}, 1)" style="text-align:center" type="number" placeholder="Probability" value="${node.proba[i][1]}">
 				</td>
 			</tr>`
 		}
@@ -86,4 +86,13 @@ function updateName() {
 		<input id="node_name_input" class="uk-input" type="text" placeholder="Node name" value="${span_node_name.innerHTML}" autofocus>
 		`
 	}
+}
+
+function checkProba(proba_index, input_index) {
+	let current_doc = document.getElementById("p" + proba_index.toString() + input_index.toString())
+	let opposite_doc = document.getElementById("p" + proba_index.toString() + (1 - input_index).toString())
+	let current_value = parseFloat(current_doc.value)
+	let value = Math.max(Math.min(1, current_value), 0)
+	current_doc.value = parseFloat(value)
+	opposite_doc.value = parseFloat((1 - value).toFixed(10))
 }
