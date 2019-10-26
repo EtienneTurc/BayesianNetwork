@@ -12,17 +12,30 @@
 </head>
 
 <body id="body">
-	<div id="banner">
-		<h2 class="title">Bayesian network</h2>
+	<div id="banner" uk-grid>
+		<h2 class="uk-width-1-3 title">Bayesian network</h2>
+		<div class="uk-width-expand@m uk-flex uk-flex-right">
+			<button onclick="saveToJson()" class="uk-button color-white uk-button-default uk-margin-small-right">
+				Save
+			</button>
+			<button onclick="loadJsonFile()" class="uk-button color-white uk-button-default uk-margin-small-right">
+				Load
+			</button>
+			<button onclick="computeProbaAndUpdate()" class="uk-button color-white uk-button-default ">
+				Compute
+			</button>
+		</div>
 	</div>
-	<div class="background-color" uk-grid>
+
+
+	<div class="background-color no-margin-top" uk-grid>
 		<div class="background-color">
 			<div id="container"></div>
 		</div>
 
 		<div
 			class="uk-width-expand@m uk-margin-medium-right uk-margin-medium-left uk-card uk-card-default uk-card-body card-style">
-			<form id="form" onsubmit="return false">
+			<form id="form" class="uk-form-stacked" onsubmit="return false">
 				<h3 class="uk-heading-line"><span>Get started</span></h3>
 				<p>
 					Add nodes by double clicking.<br>
@@ -45,7 +58,7 @@
 <script src="public/js/utils/utils.js"></script>
 <script src="public/js/utils/entityHelper.js"></script>
 <script src="public/js/utils/drawHelper.js"></script>
-<script src="public/js/utils/decipherJson.js"></script>
+<script src="public/js/utils/jsonHelper.js"></script>
 <script src="public/js/display/konva.js"></script>
 <script src="public/js/display/form.js"></script>
 <script src="public/js/proba.js"></script>

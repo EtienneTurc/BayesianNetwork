@@ -15,7 +15,7 @@ html, body {
 
 #banner {
 	background-color: #3498db;
-	height: 15%;
+	padding: 3%;
 }
 
 #form {
@@ -25,15 +25,26 @@ html, body {
 .card-style {
 	border-radius: 5px;
 	height: 100%;
-	/* margin-top:10vh !important; */
 }
 
 .title {
 	color:white;
-	padding: 2%;
-	vertical-align: middle;
+	vertical-align: middle !important;
 }
 
 .background-color {
 	background-color: #3498db;
+}
+
+.color-white {
+	color:white !important;
+}
+
+.no-margin-top {
+	margin-top:0px !important;
+}
+
+.uk-form-label {
+	font-size:16px !important;
+
 }

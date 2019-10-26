@@ -22,3 +22,11 @@ function decipherJson(json_file = net) {
 
 	return [nodes, edges]
 }
+
+function saveToJson() {
+	console.log("hi")
+}
+
+function loadJsonFile() {
+	console.log("hi")
+}

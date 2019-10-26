@@ -6,7 +6,7 @@ container.addEventListener('node-selected', function (e) {
 		let node = e.detail.node
 		let html_to_inject = `
 		<div class="uk-margin">
-			<h4 class="uk-heading-line"><span id="node_name" ondblclick="updateName()">${node.name}</span></h4>
+			<h4 class="uk-heading-line uk-text-center"><span id="node_name" ondblclick="updateName()">${node.name}</span></h4>
 		</div>
 		<table class="uk-table uk-table-small uk-table-divider">
 			<thead>
@@ -37,17 +37,29 @@ container.addEventListener('node-selected', function (e) {
 			</tbody>
 		</table>
 		<div class="uk-margin">
-			<select id="value-attribution" class="uk-select">
+			<select id="value-attribution" class="uk-select uk-width-1-2">
 				<option ${node.value == -1 ? 'selected' : ''} value="-1">Non attributed</option>
 				<option ${node.value == 0 ? 'selected' : ''} value="0">0</option>
 				<option ${node.value == 1 ? 'selected' : ''} value="1">1</option>
 			</select>
 		</div>
-		<button onclick="saveNode(${node.id})" class="uk-button uk-button-default">Save</button>
-		<button onclick="computeProbaAndUpdate()" class="uk-button uk-button-default">Compute</button>`
+		<div class="uk-flex uk-flex-center" style="margin-top:20px;">
+			<button onclick="saveNode(${node.id})" class="uk-button uk-button-default">Update node</button>
+		</div>
+		`
 		form.innerHTML = html_to_inject
 	} else {
-		form.innerHTML = "Nothing to display"
+		form.innerHTML = `
+		<h3 class="uk-heading-line"><span>Get started</span></h3>
+		<p>
+			Add nodes by double clicking.<br>
+			Draw edges by pressing shift and clicking on the nodes.<br>
+			Delete an edge or a node by pressing <i>delete</i>.<br>
+			Compute the probabilities by clicking the <i>Compute</i> button.<br>
+			Save your network by simply clicking on the <i>Save</i> button.<br>
+			Use a previous network by loading it.
+		</p>
+		`
 	}
 });
 
@@ -71,7 +83,7 @@ function updateName() {
 		span_node_name.innerHTML = document.getElementById("node_name_input").value
 	} else {
 		span_node_name.innerHTML = `
-		<input id="node_name_input" class="uk-input" type="text" placeholder="Node name" value="${span_node_name.innerHTML}">
+		<input id="node_name_input" class="uk-input" type="text" placeholder="Node name" value="${span_node_name.innerHTML}" autofocus>
 		`
 	}
 }
