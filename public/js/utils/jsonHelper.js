@@ -1,5 +1,4 @@
 function handleFileLoad(event) {
-	console.log("hi")
 	var json_content = event.target.result;
 	newStage(JSON.parse(json_content))
 	document.getElementById("close-modal").click()
@@ -30,8 +29,34 @@ function decipherJson(json_file = net) {
 	return [nodes, edges]
 }
 
+function cipherJson(nodes_to_save) {
+	let json_nodes = []
+	for (let node of nodes_to_save) {
+		let parents_id = node.parents.map(parent => parent.id)
+		json_nodes.push({
+			id: node.id,
+			x: node.konva_node.getX(),
+			y: node.konva_node.getY(),
+			name: node.name,
+			value: node.value,
+			parents: parents_id,
+			proba: node.proba
+		})
+	}
+	return JSON.stringify({ nodes: json_nodes })
+}
+
 function saveToJson() {
-	console.log("hi")
+	var element = document.createElement('a');
+	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(cipherJson(nodes)));
+	element.setAttribute('download', "net.json");
+
+	element.style.display = 'none';
+	document.body.appendChild(element);
+
+	element.click();
+
+	document.body.removeChild(element);
 }
 
 
