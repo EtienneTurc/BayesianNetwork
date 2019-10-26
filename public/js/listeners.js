@@ -47,7 +47,7 @@ function onSelected(e) {
 }
 
 stage.on('dblclick', function () {
-	let mouse_pos = stage.getPointerPosition()
+	let mouse_pos = getMousePosition(stage)
 	let node = new Node(mouse_pos.x, mouse_pos.y)
 	nodes.push(node)
 
@@ -61,7 +61,14 @@ stage.on('dblclick', function () {
 
 stage.on('mousemove', function () {
 	if (shift_pressed && node_to_link && konva_arrow) {
-		moveArrow(node_to_link, stage.getPointerPosition())
+		moveArrow(node_to_link, getMousePosition(stage))
 		layer.draw()
 	}
+})
+
+
+stage.on('wheel', function (e) {
+	stage.setScaleX(stage.getScaleX() * (1 + SCALE_SPEED * e.evt.wheelDeltaY))
+	stage.setScaleY(stage.getScaleX() * (1 + SCALE_SPEED * e.evt.wheelDeltaY))
+	layer.draw()
 })

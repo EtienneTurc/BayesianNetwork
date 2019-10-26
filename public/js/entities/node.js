@@ -130,7 +130,7 @@ function nodeListeners(node, konva_node) {
 				destroyArrow()
 			} else {
 				node_to_link = node
-				drawArrow(node_to_link, stage.getPointerPosition())
+				drawArrow(node_to_link, getMousePosition(stage))
 			}
 			layer.draw()
 		}

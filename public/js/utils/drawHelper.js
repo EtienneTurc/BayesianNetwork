@@ -35,3 +35,12 @@ function moveEdgesRelatedTo(node, edges) {
 		}
 	}
 }
+
+function getMousePosition(stage) {
+	let mouse_pos = stage.getPointerPosition()
+	mouse_pos.x -= stage.getX()
+	mouse_pos.y -= stage.getY()
+	mouse_pos.x /= stage.scaleX()
+	mouse_pos.y /= stage.scaleY()
+	return mouse_pos
+}

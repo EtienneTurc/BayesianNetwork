@@ -16,8 +16,9 @@ const POINTER_WIDTH = 10
 const FONT = 'Calibri'
 const FONT_SIZE = 16
 const TEXT_COLOR = 'rgb(0, 0, 0)'
-
 const LINE_WIDTH = 3
+
+const SCALE_SPEED = 0.0002
 
 // Key codes
 const BACKSPACE = 8

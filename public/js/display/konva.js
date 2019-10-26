@@ -5,6 +5,7 @@ var stage = new Konva.Stage({
 	container: 'container',
 	width: width,
 	height: height,
+	draggable: true
 });
 
 var layer = new Konva.Layer();
