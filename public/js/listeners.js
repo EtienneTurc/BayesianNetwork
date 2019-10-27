@@ -68,9 +68,22 @@ stage.on('mousemove', function () {
 
 
 stage.on('wheel', function (e) {
-	stage.setScaleX(stage.getScaleX() * (1 + SCALE_SPEED * e.evt.wheelDeltaY))
-	stage.setScaleY(stage.getScaleX() * (1 + SCALE_SPEED * e.evt.wheelDeltaY))
-	layer.draw()
+	var mouse_pos = getMousePosition(stage)
+
+	var newScale =
+		e.evt.deltaY > 0 ? stage.getScaleX() * (1 + SCALE_SPEED * e.evt.wheelDeltaY) : stage.getScaleX() * (1 + SCALE_SPEED * e.evt.wheelDeltaY);
+	stage.scale({ x: newScale, y: newScale });
+
+	var newPos = {
+		x:
+			-(mouse_pos.x - stage.getPointerPosition().x / newScale) *
+			newScale,
+		y:
+			-(mouse_pos.y - stage.getPointerPosition().y / newScale) *
+			newScale
+	};
+	stage.position(newPos);
+	stage.batchDraw();
 })
 
 

@@ -122,6 +122,10 @@ function nodeListeners(node, konva_node) {
 	konva_node.on('click', function () {
 		if (shift_pressed) {
 			if (node_to_link) {
+				if (node_to_link.id == node.id) {
+					return
+				}
+
 				node.addParent(node_to_link)
 				var edge = new Edge(node_to_link, node)
 				edges.push(edge)

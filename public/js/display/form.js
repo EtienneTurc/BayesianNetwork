@@ -4,14 +4,14 @@ var slider = document.getElementById("slider")
 
 container.addEventListener('node-selected', function (e) {
 	if (e.detail.selected) {
-		UIkit.slider(slider).show(1);
+		UIkit.slider(slider).show(2);
 
 		let node = e.detail.node
 		let html_to_inject = `
 		<div class="uk-margin">
 			<h4 class="uk-heading-line uk-text-center"><span id="node_name" ondblclick="updateName()">${node.name}</span></h4>
 		</div>
-		<table class="uk-table uk-table-small uk-table-divider">
+		<table class="uk-table uk-table-small uk-table-divider uk-overflow-auto">
 			<thead>
 				<tr>`
 
@@ -52,10 +52,10 @@ container.addEventListener('node-selected', function (e) {
 		`
 		form.innerHTML = html_to_inject
 	} else {
-		UIkit.slider(slider).show(0);
+		UIkit.slider(slider).show(1);
 		form.innerHTML = `
 		<div class="uk-margin">
-			<h4 class="uk-heading-line uk-text-center"><span>No nodes selected</span></h4>
+			<h3 class="uk-heading-line uk-text-center"><span><b>No nodes selected</b></span></h3>
 		</div>
 		`
 	}

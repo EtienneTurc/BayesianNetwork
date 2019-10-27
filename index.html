@@ -17,14 +17,14 @@
 		<div class="uk-width-expand@m uk-flex uk-flex-right">
 			<button onclick="saveToJson()"
 				class="uk-button color-white uk-button-large uk-button-default uk-margin-small-right">
-				Save
+				<span>Save</span>
 			</button>
 			<button href="#modal-center" uk-toggle
 				class="uk-button uk-button-large color-white uk-button-default uk-margin-small-right">
-				Load
+				<span>Load</span>
 			</button>
 			<button onclick="computeProbaAndUpdate()" class="uk-button uk-button-large color-white uk-button-default ">
-				Compute
+				<span>Compute</span>
 			</button>
 		</div>
 	</div>
@@ -44,9 +44,21 @@
 						<li class="uk-width-3-4">
 							<div class="full-height" uk-slider-parallax="scale:0.85,1,0.85">
 								<div id="1st-li" class="uk-card transform-up uk-card-default uk-card-body card-style">
+									<h3 class="uk-heading-line uk-text-center"><span><b>Overview</b></span></h3>
+									<h4>
+										<p>
+											This application is a simple and easy tool to model a bayesian network.
+										</p>
+									</h4>
+								</div>
+							</div>
+						</li>
+						<li class="uk-width-3-4">
+							<div class="full-height" uk-slider-parallax="scale:0.85,1,0.85">
+								<div id="2nd-li" class="uk-card transform-down uk-card-default uk-card-body card-style">
 									<h3 class="uk-heading-line uk-text-center"><span><b>Get
 												started</b></span></h3>
-									<h4>
+									<h4 class="uk-text-justify">
 										<i>Load</i> a network by simply clicking on the <i>Load</i> button.<br>
 										<i>Add</i> nodes by <b>double clicking</b>.<br>
 										<i>Draw</i> edges by pressing <b>shift</b> and clicking on the
@@ -62,11 +74,13 @@
 						</li>
 						<li class="uk-width-3-4">
 							<div class="full-height" uk-slider-parallax="scale:0.85,1,0.85">
-								<div id="2nd-li" class="uk-card transform-down uk-card-default uk-card-body card-style">
+								<div class="uk-card uk-card-default uk-card-body card-style">
 									<form id="form" class="uk-form-stacked" onsubmit="return false">
 										<div class="uk-margin">
-											<h4 class="uk-heading-line uk-text-center"><span>No nodes selected</span>
-											</h4>
+											<div class="uk-margin">
+												<h3 class="uk-heading-line uk-text-center"><span><b>No nodes
+															selected</b></span></h3>
+											</div>
 										</div>
 									</form>
 								</div>
@@ -76,18 +90,10 @@
 						<li class="uk-width-3-4">
 							<div class="full-height" uk-slider-parallax="scale:0.85,1,0.85">
 								<div class="uk-card uk-card-default uk-card-body card-style">
-									<p>
-										Compute
-									</p>
-								</div>
-							</div>
-						</li>
-						<li class="uk-width-3-4">
-							<div class="full-height" uk-slider-parallax="scale:0.85,1,0.85">
-								<div class="uk-card uk-card-default uk-card-body card-style">
-									<p>
-										Compute more
-									</p>
+									<h3 class="uk-heading-line uk-text-center"><span><b>Compute</b></span></h3>
+									<div id="proba-table" class="uk-text-center">
+
+									</div>
 								</div>
 							</div>
 						</li>
