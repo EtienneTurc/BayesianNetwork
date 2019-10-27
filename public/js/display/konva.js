@@ -1,5 +1,5 @@
-var width = window.innerWidth * 0.6;
-var height = window.innerHeight * 0.82;
+var width = window.innerWidth * 0.55;
+var height = window.innerHeight * 0.8;
 
 function newStage(json) {
 	stage = new Konva.Stage({

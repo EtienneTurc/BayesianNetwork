@@ -13,40 +13,93 @@
 
 <body id="body">
 	<div id="banner" uk-grid>
-		<h2 class="uk-width-1-3 title">Bayesian network</h2>
+		<h1 class="uk-width-1-3 title">Bayesian network</h1>
 		<div class="uk-width-expand@m uk-flex uk-flex-right">
-			<button onclick="saveToJson()" class="uk-button color-white uk-button-default uk-margin-small-right">
+			<button onclick="saveToJson()"
+				class="uk-button color-white uk-button-large uk-button-default uk-margin-small-right">
 				Save
 			</button>
 			<button href="#modal-center" uk-toggle
-				class="uk-button color-white uk-button-default uk-margin-small-right">
+				class="uk-button uk-button-large color-white uk-button-default uk-margin-small-right">
 				Load
 			</button>
-			<button onclick="computeProbaAndUpdate()" class="uk-button color-white uk-button-default ">
+			<button onclick="computeProbaAndUpdate()" class="uk-button uk-button-large color-white uk-button-default ">
 				Compute
 			</button>
 		</div>
 	</div>
 
 
-	<div class="background-color no-margin-top" uk-grid>
+	<div class="background-color no-margin-top uk-grid uk-grid-small">
 		<div class="background-color">
 			<div id="container"></div>
 		</div>
 
-		<div
-			class="uk-width-expand@m uk-margin-medium-right uk-margin-medium-left uk-card uk-card-default uk-card-body card-style">
-			<form id="form" class="uk-form-stacked" onsubmit="return false">
-				<h3 class="uk-heading-line"><span>Get started</span></h3>
-				<p>
-					Add nodes by double clicking.<br>
-					Draw edges by pressing shift and clicking on the nodes.<br>
-					Delete an edge or a node by pressing <i>delete</i>.<br>
-					Compute the probabilities by clicking the <i>Compute</i> button.<br>
-					Save your network by simply clicking on the <i>Save</i> button.<br>
-					Use a previous network by loading it.
-				</p>
-			</form>
+		<div id="slider" class="uk-width-expand uk-margin-medium-left uk-margin-medium-right"
+			uk-slider="center: true; velocity: 1.5; easing: cubic-bezier(.4,0,.2,1)">
+
+			<div class="uk-position-relative">
+				<div class="uk-slider-container">
+					<ul class="uk-slider-items uk-grid uk-grid-small">
+						<li class="uk-width-3-4">
+							<div class="full-height" uk-slider-parallax="scale:0.85,1,0.85">
+								<div id="1st-li" class="uk-card transform-up uk-card-default uk-card-body card-style">
+									<h3 class="uk-heading-line uk-text-center"><span><b>Get
+												started</b></span></h3>
+									<h4>
+										<i>Load</i> a network by simply clicking on the <i>Load</i> button.<br>
+										<i>Add</i> nodes by <b>double clicking</b>.<br>
+										<i>Draw</i> edges by pressing <b>shift</b> and clicking on the
+										nodes.<br>
+										<i>Delete</i> an edge or a node by pressing <b>delete</b>.<br>
+										<i>Compute</i> the probabilities by clicking the <i>Compute</i>
+										button.<br>
+										<i>Save</i> your network by simply clicking on the <i>Save</i>
+										button.<br>
+									</h4>
+								</div>
+							</div>
+						</li>
+						<li class="uk-width-3-4">
+							<div class="full-height" uk-slider-parallax="scale:0.85,1,0.85">
+								<div id="2nd-li" class="uk-card transform-down uk-card-default uk-card-body card-style">
+									<form id="form" class="uk-form-stacked" onsubmit="return false">
+										<div class="uk-margin">
+											<h4 class="uk-heading-line uk-text-center"><span>No nodes selected</span>
+											</h4>
+										</div>
+									</form>
+								</div>
+							</div>
+
+						</li>
+						<li class="uk-width-3-4">
+							<div class="full-height" uk-slider-parallax="scale:0.85,1,0.85">
+								<div class="uk-card uk-card-default uk-card-body card-style">
+									<p>
+										Compute
+									</p>
+								</div>
+							</div>
+						</li>
+						<li class="uk-width-3-4">
+							<div class="full-height" uk-slider-parallax="scale:0.85,1,0.85">
+								<div class="uk-card uk-card-default uk-card-body card-style">
+									<p>
+										Compute more
+									</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<a class="uk-position-center-left uk-position-small uk-hidden-hover uk-light" href="#"
+					uk-slidenav-previous uk-slider-item="previous" style="vertical-align: middle"></a>
+				<a class="uk-position-center-right uk-position-small uk-hidden-hover uk-light" href="#" uk-slidenav-next
+					uk-slider-item="next" style="vertical-align: middle"></a>
+
+				<ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin uk-light"></ul>
+			</div>
 		</div>
 	</div>
 

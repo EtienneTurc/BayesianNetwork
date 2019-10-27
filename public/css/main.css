@@ -18,13 +18,18 @@ html, body {
 	padding: 3%;
 }
 
-#form {
+li {
 	text-align:justify;
+}
+
+#slider {
+	width:100%;
 }
 
 .card-style {
 	border-radius: 5px;
-	height: 100%;
+	height:100%;
+	width:100%;
 }
 
 .title {
@@ -46,5 +51,31 @@ html, body {
 
 .uk-form-label {
 	font-size:16px !important;
+}
 
+.full-height {
+	height:100%
+}
+
+.transform-up {
+	transform: scale(1.17);
+}
+
+
+.transform-down {
+	transform: scale(0.85);
+}
+
+.uk-dotnav>.uk-active>* {
+	background-color: white !important;
+	border-color: transparent;
+}
+
+.uk-dotnav>*>* {
+	background-color: transparent;
+	border-color: white !important;
+}
+
+.uk-button-large {
+	font-size:18px !important;
 }

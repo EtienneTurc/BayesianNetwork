@@ -1,8 +1,11 @@
 var form = document.getElementById("form")
 var container = document.getElementById("container")
+var slider = document.getElementById("slider")
 
 container.addEventListener('node-selected', function (e) {
 	if (e.detail.selected) {
+		UIkit.slider(slider).show(1);
+
 		let node = e.detail.node
 		let html_to_inject = `
 		<div class="uk-margin">
@@ -49,16 +52,11 @@ container.addEventListener('node-selected', function (e) {
 		`
 		form.innerHTML = html_to_inject
 	} else {
+		UIkit.slider(slider).show(0);
 		form.innerHTML = `
-		<h3 class="uk-heading-line"><span>Get started</span></h3>
-		<p>
-			Add nodes by double clicking.<br>
-			Draw edges by pressing shift and clicking on the nodes.<br>
-			Delete an edge or a node by pressing <i>delete</i>.<br>
-			Compute the probabilities by clicking the <i>Compute</i> button.<br>
-			Save your network by simply clicking on the <i>Save</i> button.<br>
-			Use a previous network by loading it.
-		</p>
+		<div class="uk-margin">
+			<h4 class="uk-heading-line uk-text-center"><span>No nodes selected</span></h4>
+		</div>
 		`
 	}
 });

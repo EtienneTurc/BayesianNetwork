@@ -72,3 +72,17 @@ stage.on('wheel', function (e) {
 	stage.setScaleY(stage.getScaleX() * (1 + SCALE_SPEED * e.evt.wheelDeltaY))
 	layer.draw()
 })
+
+
+var slider = document.getElementById("slider")
+var c = 0
+function handleTransform() {
+	if (c == 1) {
+		document.getElementById("1st-li").classList.remove("transform-up")
+		document.getElementById("2nd-li").classList.remove("transform-down")
+		slider.removeEventListener("itemshow", handleTransform)
+	}
+	c++
+
+}
+slider.addEventListener("itemshow", handleTransform)
