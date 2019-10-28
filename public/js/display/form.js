@@ -9,7 +9,7 @@ container.addEventListener('node-selected', function (e) {
 		let node = e.detail.node
 		let html_to_inject = `
 		<div class="uk-margin">
-			<h4 class="uk-heading-line uk-text-center"><span id="node_name" ondblclick="updateName()">${node.name}</span></h4>
+			<h4 class="uk-heading-line uk-text-center"><span id="node_name" onmouseleave="displayName()" onmouseenter="updateName()">${node.name}</span></h4>
 		</div>
 		<table class="uk-table uk-table-small uk-table-divider uk-overflow-auto">
 			<thead>
@@ -77,13 +77,14 @@ function saveNode(id) {
 
 function updateName() {
 	var span_node_name = document.getElementById("node_name")
-	if (document.getElementById("node_name_input")) {
-		span_node_name.innerHTML = document.getElementById("node_name_input").value
-	} else {
-		span_node_name.innerHTML = `
-		<input id="node_name_input" class="uk-input" type="text" placeholder="Node name" value="${span_node_name.innerHTML}" autofocus>
-		`
-	}
+	span_node_name.innerHTML = `
+	<input id="node_name_input" class="uk-input" type="text" placeholder="Node name" value="${span_node_name.innerHTML}" autofocus>
+	`
+}
+
+function displayName() {
+	var span_node_name = document.getElementById("node_name")
+	span_node_name.innerHTML = document.getElementById("node_name_input").value
 }
 
 function checkProba(proba_index, input_index) {
