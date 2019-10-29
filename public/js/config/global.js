@@ -11,3 +11,6 @@ var mouseOnNode = null
 
 var stage = null
 var layer = null
+
+
+var stageListeners = null

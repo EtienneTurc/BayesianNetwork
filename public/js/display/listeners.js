@@ -46,46 +46,49 @@ function onSelected(e) {
 	layer.draw()
 }
 
-stage.on('dblclick', function () {
-	let mouse_pos = getMousePosition(stage)
-	let node = new Node(mouse_pos.x, mouse_pos.y)
-	nodes.push(node)
+function stageListeners() {
+	stage.on('dblclick', function () {
+		let mouse_pos = getMousePosition(stage)
+		let node = new Node(mouse_pos.x, mouse_pos.y)
+		nodes.push(node)
 
-	triggerEvent('node-selected', {
-		selected: true,
-		node: node,
+		triggerEvent('node-selected', {
+			selected: true,
+			node: node,
+		})
+
+		layer.draw()
 	})
 
-	layer.draw()
-})
-
-stage.on('mousemove', function () {
-	if (shift_pressed && node_to_link && konva_arrow) {
-		moveArrow(node_to_link, getMousePosition(stage))
-		layer.draw()
-	}
-})
+	stage.on('mousemove', function () {
+		if (shift_pressed && node_to_link && konva_arrow) {
+			moveArrow(node_to_link, getMousePosition(stage))
+			layer.draw()
+		}
+	})
 
 
-stage.on('wheel', function (e) {
-	var mouse_pos = getMousePosition(stage)
+	stage.on('wheel', function (e) {
+		var mouse_pos = getMousePosition(stage)
 
-	var newScale =
-		e.evt.deltaY > 0 ? stage.getScaleX() * (1 + SCALE_SPEED * e.evt.wheelDeltaY) : stage.getScaleX() * (1 + SCALE_SPEED * e.evt.wheelDeltaY);
-	stage.scale({ x: newScale, y: newScale });
+		var newScale =
+			e.evt.deltaY > 0 ? stage.getScaleX() * (1 + SCALE_SPEED * e.evt.wheelDeltaY) : stage.getScaleX() * (1 + SCALE_SPEED * e.evt.wheelDeltaY);
+		stage.scale({ x: newScale, y: newScale });
 
-	var newPos = {
-		x:
-			-(mouse_pos.x - stage.getPointerPosition().x / newScale) *
-			newScale,
-		y:
-			-(mouse_pos.y - stage.getPointerPosition().y / newScale) *
-			newScale
-	};
-	stage.position(newPos);
-	stage.batchDraw();
-})
+		var newPos = {
+			x:
+				-(mouse_pos.x - stage.getPointerPosition().x / newScale) *
+				newScale,
+			y:
+				-(mouse_pos.y - stage.getPointerPosition().y / newScale) *
+				newScale
+		};
+		stage.position(newPos);
+		stage.batchDraw();
+	})
+}
 
+stageListeners()
 
 var slider = document.getElementById("slider")
 var c = 0

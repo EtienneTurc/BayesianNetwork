@@ -13,6 +13,8 @@ function newStage(json) {
 	stage.add(layer);
 
 	[nodes, edges] = decipherJson(json)
+	if (stageListeners)
+		stageListeners()
 	layer.draw()
 }
 

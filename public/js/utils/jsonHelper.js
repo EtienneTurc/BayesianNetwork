@@ -5,6 +5,13 @@ function handleFileLoad(event) {
 }
 
 function decipherJson(json_file = net) {
+	let stage_status = json_file.stage
+	if (stage_status) {
+		stage.setX(stage_status.x)
+		stage.setY(stage_status.y)
+		stage.scale({ x: stage_status.scale, y: stage_status.scale })
+	}
+
 	let nodes_json = json_file.nodes
 	let nodes = []
 	let edges = []
@@ -31,7 +38,9 @@ function decipherJson(json_file = net) {
 
 function cipherJson(nodes_to_save) {
 	let stage_status = {
-
+		x: stage.getX(),
+		y: stage.getY(),
+		scale: stage.scaleX(),
 	}
 
 	let json_nodes = []
@@ -47,7 +56,7 @@ function cipherJson(nodes_to_save) {
 			proba: node.proba
 		})
 	}
-	return JSON.stringify({ nodes: json_nodes })
+	return JSON.stringify({ stage: stage_status, nodes: json_nodes })
 }
 
 function saveToJson() {
