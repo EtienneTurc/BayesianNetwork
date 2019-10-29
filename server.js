@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 
 const path = require('path');
+const fs = require('fs')
 const bodyParser = require('body-parser')
 
 app.use(bodyParser.json())
@@ -15,6 +16,12 @@ app.get('/', function (req, res) {
 
 app.post('/feedback', function (req, res) {
 	console.log(req.body.feedback)
+	let text_to_store = req.body.feedback + "\n"
+	fs.appendFile('feedback.txt', text_to_store, function (err) {
+		if (err) {
+			res.send(err)
+		};
+	});
 	res.sendStatus(200)
 })
 
