@@ -55,7 +55,10 @@ container.addEventListener('node-selected', function (e) {
 		UIkit.slider(slider).show(1);
 		form.innerHTML = `
 		<div class="uk-margin">
-			<h3 class="uk-heading-line uk-text-center"><span><b>No nodes selected</b></span></h3>
+			<h3 class="uk-heading-line uk-text-center"><span><b>No nodes
+						selected</b></span></h3>
+			<h4 class="uk-text-center"><i>Select</i> a node by <b>double clicking</b> on
+				it.<br>
 		</div>
 		`
 	}

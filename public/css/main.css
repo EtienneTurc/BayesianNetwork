@@ -6,6 +6,14 @@ html, body {
 	background-color: #3498db
 } /* just to be sure these are full screen*/
 
+li {
+	text-align:justify;
+}
+
+h4 {
+	margin-top:10px !important;
+}
+
 #container {
 	display:block;
 	background-color: white;
@@ -16,11 +24,10 @@ html, body {
 #banner {
 	background-color: #3498db;
 	padding: 3%;
+	padding-top:2%;
+	padding-bottom: 1%;
 }
 
-li {
-	text-align:justify;
-}
 
 #slider {
 	width:100%;
@@ -34,7 +41,16 @@ li {
 
 .title {
 	color:white;
-	vertical-align: middle !important;
+	margin:0px;
+}
+
+.subtitle {
+	color:white;
+	margin:0px;
+}
+
+.buttons {
+	padding-bottom:10px;
 }
 
 .background-color {
@@ -78,4 +94,9 @@ li {
 
 .uk-button-large {
 	font-size:18px !important;
+}
+
+
+.uk-heading-line {
+	margin-bottom:10px;
 }

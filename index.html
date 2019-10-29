@@ -13,8 +13,11 @@
 
 <body id="body">
 	<div id="banner" uk-grid>
-		<h1 class="uk-width-1-3 title">Bayesian network</h1>
-		<div class="uk-width-expand@m uk-flex uk-flex-right">
+		<div class="uk-width-1-2 uk-flex uk-flex-column">
+			<h1 class="title">BaNetOn</h1>
+			<h4 class="subtitle">A graphical online tool to model and visualize bayesian networks</h4>
+		</div>
+		<div class="uk-width-expand@m buttons uk-flex uk-flex-right uk-flex-bottom">
 			<button onclick="saveToJson()"
 				class="uk-button color-white uk-button-large uk-button-default uk-margin-small-right">
 				<span>Save</span>
@@ -35,9 +38,9 @@
 			<div id="container"></div>
 		</div>
 
-		<div id="slider" class="uk-width-expand uk-margin-medium-left uk-margin-medium-right"
+		<div id="slider"
+			class="uk-width-expand uk-margin-medium-left uk-margin-medium-right uk-flex uk-flex-column uk-flex-center"
 			uk-slider="center: true; velocity: 1.5; easing: cubic-bezier(.4,0,.2,1)">
-
 			<div class="uk-position-relative">
 				<div class="uk-slider-container">
 					<ul class="uk-slider-items uk-grid uk-grid-small">
@@ -45,9 +48,15 @@
 							<div class="full-height" uk-slider-parallax="scale:0.85,1,0.85">
 								<div id="1st-li" class="uk-card transform-up uk-card-default uk-card-body card-style">
 									<h3 class="uk-heading-line uk-text-center"><span><b>Overview</b></span></h3>
-									<h4>
+									<h4 class="uk-text-justify">
 										<p>
-											This application is a simple and easy tool to model a bayesian network.
+											This application is a <i>simple</i> and <i>easy</i> online tool to model and
+											visualize a
+											bayesian network.<br>
+											You can <i>create</i> your own bayesian network.<br>
+											<i>Compute</i> the probability of each node with regard to attributed
+											nodes.<br>
+											<i>Export</i> and <i>save</i> your network to show your friends !
 										</p>
 									</h4>
 								</div>
@@ -77,10 +86,10 @@
 								<div class="uk-card uk-card-default uk-card-body card-style">
 									<form id="form" class="uk-form-stacked" onsubmit="return false">
 										<div class="uk-margin">
-											<div class="uk-margin">
-												<h3 class="uk-heading-line uk-text-center"><span><b>No nodes
-															selected</b></span></h3>
-											</div>
+											<h3 class="uk-heading-line uk-text-center"><span><b>No nodes
+														selected</b></span></h3>
+											<h4 class="uk-text-center"><i>Select</i> a node by <b>double clicking</b> on
+												it.<br>
 										</div>
 									</form>
 								</div>
@@ -92,8 +101,28 @@
 								<div class="uk-card uk-card-default uk-card-body card-style">
 									<h3 class="uk-heading-line uk-text-center"><span><b>Compute</b></span></h3>
 									<div id="proba-table" class="uk-text-center">
-
+										<h4><b>Click</b> on the <i>Compute</i> button.<br></h4>
 									</div>
+								</div>
+							</div>
+						</li>
+						<li class="uk-width-3-4">
+							<div class="full-height" uk-slider-parallax="scale:0.85,1,0.85">
+								<div class="uk-card uk-card-default uk-card-body card-style">
+									<h3 class="uk-heading-line uk-text-center"><span><b>Help/Feedback</b></span></h3>
+									<h4 class="uk-text-justify">
+										Need help ? Feel free to ask for help below !<br>
+										Want to give your feedback ? Feel free to write it below !
+									</h4>
+									<form class="uk-form-stacked" id="feedback-form">
+										<div class="uk-margin">
+											<textarea id="feedback" name="feedback" class="uk-textarea" rows="6"
+												placeholder="Your question or feedback"></textarea>
+										</div>
+										<div class="uk-flex uk-flex-center" style="margin-top:20px;">
+											<button type="submit" class="uk-button uk-button-default">Send</button>
+										</div>
+									</form>
 								</div>
 							</div>
 						</li>
@@ -148,12 +177,13 @@
 <script src="js/entities/node.js"></script>
 <script src="js/entities/edge.js"></script>
 <script src="js/utils/utils.js"></script>
+<script src="js/utils/feedback.js"></script>
 <script src="js/utils/entityHelper.js"></script>
 <script src="js/utils/drawHelper.js"></script>
 <script src="js/utils/jsonHelper.js"></script>
 <script src="js/display/konva.js"></script>
-<script src="js/display/form.js"></script>
-<script src="js/proba.js"></script>
-<script src="js/listeners.js"></script>
+<script src="js/display/nodeForm.js"></script>
+<script src="js/display/listeners.js"></script>
+<script src="js/core/proba.js"></script>
 
 </html>

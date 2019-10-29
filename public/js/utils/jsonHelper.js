@@ -30,6 +30,10 @@ function decipherJson(json_file = net) {
 }
 
 function cipherJson(nodes_to_save) {
+	let stage_status = {
+
+	}
+
 	let json_nodes = []
 	for (let node of nodes_to_save) {
 		let parents_id = node.parents.map(parent => parent.id)
