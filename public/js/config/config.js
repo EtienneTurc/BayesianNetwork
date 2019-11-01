@@ -14,7 +14,7 @@ const POINTER_LENGTH = 10
 const POINTER_WIDTH = 10
 
 const FONT = 'Calibri'
-const FONT_SIZE = 16
+const FONT_SIZE = 20
 const TEXT_COLOR = 'rgb(0, 0, 0)'
 const LINE_WIDTH = 3
 

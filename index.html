@@ -7,15 +7,20 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Bayesian Network Simulation</title>
 	<link href="css/main.css" rel="stylesheet">
+	<link href="css/particles.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/css/uikit.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<script src="https://unpkg.com/konva@4.0.16/konva.min.js"></script>
 </head>
 
 <body id="body">
-	<div id="banner" uk-grid>
+	<div id="particles-js"></div>
+	<div id="banner" uk-grid style="z-index:100">
 		<div class="uk-width-1-2 uk-flex uk-flex-column">
-			<h1 class="title">BaNetOn</h1>
-			<h4 class="subtitle">A graphical online tool to model and visualize bayesian networks</h4>
+			<h1 class="title animated fadeIn">BaNetOn</h1>
+			<h4 class="subtitle animated fadeIn">A graphical online tool to model and visualize
+				bayesian
+				networks</h4>
 		</div>
 		<div class="uk-width-expand@m buttons uk-flex uk-flex-right uk-flex-bottom">
 			<button onclick="saveToJson()"
@@ -26,7 +31,7 @@
 				class="uk-button uk-button-large color-white uk-button-default uk-margin-small-right">
 				<span>Load</span>
 			</button>
-			<button onclick="computeProbaAndUpdate()" class="uk-button uk-button-large color-white uk-button-default ">
+			<button onclick="computeProbaAndUpdate()" class="uk-button uk-button-large color-white uk-button-default">
 				<span>Compute</span>
 			</button>
 		</div>
@@ -128,9 +133,9 @@
 						</li>
 					</ul>
 				</div>
-				<a class="uk-position-center-left uk-position-small uk-hidden-hover uk-light" href="#"
-					uk-slidenav-previous uk-slider-item="previous" style="vertical-align: middle"></a>
-				<a class="uk-position-center-right uk-position-small uk-hidden-hover uk-light" href="#" uk-slidenav-next
+				<a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
+					uk-slider-item="previous" style="vertical-align: middle;"></a>
+				<a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
 					uk-slider-item="next" style="vertical-align: middle"></a>
 
 				<ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin uk-light"></ul>
@@ -171,11 +176,13 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit-icons.min.js"></script>
+<script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script src="data/net.json"></script>
 <script src="js/config/config.js"></script>
 <script src="js/config/global.js"></script>
 <script src="js/entities/node.js"></script>
 <script src="js/entities/edge.js"></script>
+<script src="js/utils/particles.js"></script>
 <script src="js/utils/utils.js"></script>
 <script src="js/utils/feedback.js"></script>
 <script src="js/utils/entityHelper.js"></script>

@@ -52,7 +52,7 @@ container.addEventListener('node-selected', function (e) {
 		`
 		form.innerHTML = html_to_inject
 	} else {
-		UIkit.slider(slider).show(1);
+		UIkit.slider(slider).show(1)
 		form.innerHTML = `
 		<div class="uk-margin">
 			<h3 class="uk-heading-line uk-text-center"><span><b>No nodes
@@ -80,14 +80,26 @@ function saveNode(id) {
 
 function updateName() {
 	var span_node_name = document.getElementById("node_name")
-	span_node_name.innerHTML = `
-	<input id="node_name_input" class="uk-input" type="text" placeholder="Node name" value="${span_node_name.innerHTML}" autofocus>
-	`
+	if (!document.getElementById("node_name_input")) {
+		span_node_name.innerHTML = `
+		<input id="node_name_input" class="uk-input" type="text" placeholder="Node name" value="${span_node_name.innerHTML}">
+		`
+	}
 }
 
 function displayName() {
 	var span_node_name = document.getElementById("node_name")
-	span_node_name.innerHTML = document.getElementById("node_name_input").value
+	var input_node_name = document.getElementById("node_name_input")
+	if (!input_node_name) {
+		return
+	}
+	if (input_node_name === document.activeElement) {
+		input_node_name.addEventListener("blur", function () {
+			span_node_name.innerHTML = input_node_name.value
+		})
+	} else {
+		span_node_name.innerHTML = document.getElementById("node_name_input").value
+	}
 }
 
 function checkProba(proba_index, input_index) {
