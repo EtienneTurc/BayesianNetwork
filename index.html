@@ -17,21 +17,20 @@
 	<div id="particles-js"></div>
 	<div id="banner" uk-grid style="z-index:100">
 		<div class="uk-width-1-2 uk-flex uk-flex-column">
-			<h1 class="title animated fadeIn">BaNetOn</h1>
-			<h4 class="subtitle animated fadeIn">A graphical online tool to model and visualize
+			<h2 class="title animated fadeIn">BaNetOn</h2>
+			<p class="subtitle animated fadeIn">A graphical online tool to model and visualize
 				bayesian
-				networks</h4>
+				networks</p>
 		</div>
 		<div class="uk-width-expand@m buttons uk-flex uk-flex-right uk-flex-bottom">
-			<button onclick="saveToJson()"
-				class="uk-button color-white uk-button-large uk-button-default uk-margin-small-right">
+			<button onclick="saveToJson()" class="uk-button color-white uk-button-default uk-margin-small-right">
 				<span>Save</span>
 			</button>
 			<button href="#modal-center" uk-toggle
-				class="uk-button uk-button-large color-white uk-button-default uk-margin-small-right">
+				class="uk-button color-white uk-button-default uk-margin-small-right">
 				<span>Load</span>
 			</button>
-			<button onclick="computeProbaAndUpdate()" class="uk-button uk-button-large color-white uk-button-default">
+			<button onclick="computeProbaAndUpdate()" class="uk-button color-white uk-button-default">
 				<span>Compute</span>
 			</button>
 		</div>
@@ -52,8 +51,8 @@
 						<li class="uk-width-3-4">
 							<div class="full-height" uk-slider-parallax="scale:0.85,1,0.85">
 								<div id="1st-li" class="uk-card transform-up uk-card-default uk-card-body card-style">
-									<h3 class="uk-heading-line uk-text-center"><span><b>Overview</b></span></h3>
-									<h4 class="uk-text-justify">
+									<h4 class="uk-heading-line uk-text-center"><span><b>Overview</b></span></h4>
+									<p class="uk-text-justify">
 										<p>
 											This application is a <i>simple</i> and <i>easy</i> online tool to model and
 											visualize a
@@ -63,16 +62,16 @@
 											nodes.<br>
 											<i>Export</i> and <i>save</i> your network to show your friends !
 										</p>
-									</h4>
+									</p>
 								</div>
 							</div>
 						</li>
 						<li class="uk-width-3-4">
 							<div class="full-height" uk-slider-parallax="scale:0.85,1,0.85">
 								<div id="2nd-li" class="uk-card transform-down uk-card-default uk-card-body card-style">
-									<h3 class="uk-heading-line uk-text-center"><span><b>Get
-												started</b></span></h3>
-									<h4 class="uk-text-justify">
+									<h4 class="uk-heading-line uk-text-center"><span><b>Get
+												started</b></span></h4>
+									<p class="uk-text-justify">
 										<i>Load</i> a network by simply clicking on the <i>Load</i> button.<br>
 										<i>Add</i> nodes by <b>double clicking</b>.<br>
 										<i>Draw</i> edges by pressing <b>shift</b> and clicking on the
@@ -82,7 +81,7 @@
 										button.<br>
 										<i>Save</i> your network by simply clicking on the <i>Save</i>
 										button.<br>
-									</h4>
+									</p>
 								</div>
 							</div>
 						</li>
@@ -91,10 +90,11 @@
 								<div class="uk-card uk-card-default uk-card-body card-style">
 									<form id="form" class="uk-form-stacked" onsubmit="return false">
 										<div class="uk-margin">
-											<h3 class="uk-heading-line uk-text-center"><span><b>No nodes
-														selected</b></span></h3>
-											<h4 class="uk-text-center"><i>Select</i> a node by <b>double clicking</b> on
+											<h4 class="uk-heading-line uk-text-center"><span><b>No nodes
+														selected</b></span></h4>
+											<p class="uk-text-center"><i>Select</i> a node by <b>double clicking</b> on
 												it.<br>
+											</p>
 										</div>
 									</form>
 								</div>
@@ -104,9 +104,9 @@
 						<li class="uk-width-3-4">
 							<div class="full-height" uk-slider-parallax="scale:0.85,1,0.85">
 								<div class="uk-card uk-card-default uk-card-body card-style">
-									<h3 class="uk-heading-line uk-text-center"><span><b>Compute</b></span></h3>
+									<h4 class="uk-heading-line uk-text-center"><span><b>Compute</b></span></h4>
 									<div id="proba-table" class="uk-text-center">
-										<h4><b>Click</b> on the <i>Compute</i> button.<br></h4>
+										<p><b>Click</b> on the <i>Compute</i> button.<br></p>
 									</div>
 								</div>
 							</div>
@@ -114,11 +114,11 @@
 						<li class="uk-width-3-4">
 							<div class="full-height" uk-slider-parallax="scale:0.85,1,0.85">
 								<div class="uk-card uk-card-default uk-card-body card-style">
-									<h3 class="uk-heading-line uk-text-center"><span><b>Help/Feedback</b></span></h3>
-									<h4 class="uk-text-justify">
+									<h4 class="uk-heading-line uk-text-center"><span><b>Help/Feedback</b></span></h4>
+									<p class="uk-text-justify">
 										Need help ? Feel free to ask for help below !<br>
 										Want to give your feedback ? Feel free to write it below !
-									</h4>
+									</p>
 									<form class="uk-form-stacked" id="feedback-form">
 										<div class="uk-margin">
 											<textarea id="feedback" name="feedback" class="uk-textarea" rows="6"
